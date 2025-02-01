@@ -30,10 +30,7 @@ The app uses a private registry for some packages, you can see the registry in t
 
 In order to authenticate and access the packages, you'll need to follow the steps outlined [here](https://learn.microsoft.com/en-us/azure/devops/artifacts/npm/npmrc?view=azure-devops&tabs=Linuxmac,classic). Use the following substitutions:
 
-| Variable            | Value         |
-| ------------------- | ------------- |
-| `ORGANIZATION_NAME` | `flagstoneim` |
-| `FEED_NAME`         | `Common `     |
+
 
 ## Running mobile app
 
