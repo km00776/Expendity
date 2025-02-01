@@ -1,82 +1,111 @@
-# Practice
+# MobileApplication
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Prerequisites
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+- Homebrew
+- Node.js LTS (currently v22)
+- pnpm
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/expo?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+Everything as described in the [React Native Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) document:
 
-## Finish your CI setup
+- Xcode
+- iOS simulators
+- Cocoapods (you might prefer to install this via Homebrew instead)
+- JDK
+- Android Studio
+- Android Development Tools
+- Android system images and emulators
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/w9tjRRM8Cf)
+All macOS system dependencies installed via Homebrew can be installed using the included [Brewfile](./Brewfile):
 
-
-## Run tasks
-
-To run the dev server for your app, use:
-
-```sh
-npx nx serve mobile
+```bash
+brew bundle --file=<PATH_TO_THIS_REPO>/Brewfile
 ```
 
-To create a production bundle:
+## Setup
 
-```sh
-npx nx build mobile
+### Private Registry Access
+
+The app uses a private registry for some packages, you can see the registry in the `.npmrc` file.
+
+In order to authenticate and access the packages, you'll need to follow the steps outlined [here](https://learn.microsoft.com/en-us/azure/devops/artifacts/npm/npmrc?view=azure-devops&tabs=Linuxmac,classic). Use the following substitutions:
+
+| Variable            | Value         |
+| ------------------- | ------------- |
+| `ORGANIZATION_NAME` | `flagstoneim` |
+| `FEED_NAME`         | `Common `     |
+
+## Running mobile app
+
+```bash
+# Install dependencies
+pnpm i
+# Install a package for the mobile app. For example: pnpm nx run mobile:install react-native-unistyles
+pnpm nx run mobile:install "<MODULE>"
+# Install a list of packages for the mobile app.
+pnpm nx run mobile:install --packages "<MODULE>","<MODULE>"
+# Create .env file from .env.example and fill in values from 1Password shared vault
+cp apps/mobile/.env.example apps/mobile/.env
+# Run the prebuild command to (re)generate the native projects
+pnpm nx run mobile:prebuild --clean
+# Run the project in an iOS simulator
+pnpm nx run mobile:run-ios
+# Pick an iOS device/simulator to run the project on
+pnpm nx run mobile:run-ios -d
+# Run the project in an Android simulator
+pnpm nx run mobile:run-android
+# Pick an Android device/simulator to run the project on
+pnpm nx run mobile:run-android -d
 ```
 
-To see all available targets to run for a project, run:
+## DevTools
 
-```sh
-npx nx show project mobile
+While Expo CLI is running, press `Shift+m` to bring up the devtools menu.
+
+### React
+
+Select `Open React devtools` from the CLI menu.
+
+### Redux
+
+Select `Open redux-devtools-expo-dev-plugin` from the CLI menu.
+
+## Storybook
+
+```bash
+pnpm nx run mobile:storybook
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## Detox
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Available configurations:
 
-## Add new projects
+- `ios.sim.debug`
+- `ios.sim.release`
+- `android.emu.debug`
+- `android.emu.release`
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/expo:app demo
+```bash
+# Make sure you've already built the project once before doing a Detox build
+pnpm nx run mobile:prebuild --clean
+pnpm nx run mobile:run-ios
+# Now build the app with Detox enabled
+pnpm nx run mobile-e2e:build --configuration=ios.sim.debug
+# Finally run the tests
+pnpm nx run mobile-e2e:test --configuration=ios.sim.debug
+# To run a specific test file. For example, pnpm nx run mobile-e2e:test --configuration=ios.sim.debug --testPathPattern=app.spec.ts
+pnpm nx run mobile-e2e:test --configuration=ios.sim.debug --testPathPattern="RELATIVE-PATH-TO-TEST-FILE"
 ```
 
-To generate a new library, use:
+## FAQs
 
-```sh
-npx nx g @nx/react:lib mylib
-```
+### How do I open the software keyboard on an emulator?
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/expo?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- **iOS:** To enable on the emulator:
+  - On the emulator, you can use the shortcut `cmd + shift + k` to toggle between the hardware and software keyboard.
+  - In the Simulator toolbar, under I/O -> Keyboard, you can toggle connecting the hardware keyboard.
+- **Android:** To enable on the emulator:
+  1. Go to the Virtual Device Manager.
+  2. Find the device you are running the app on, click `Edit`.
+  3. Click on `Show Advanced Settings`.
+  4. Right at the bottom, make sure that `Enable keyboard input` is disabled.
