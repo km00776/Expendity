@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.1",
     "expo": "~52.0.28",
     "expo-splash-screen": "~0.29.21",
     "expo-status-bar": "~2.0.1",
@@ -13,7 +14,11 @@
     "react-native": "0.76.6",
     "react-native-svg": "~15.8.0",
     "react-native-svg-transformer": "~1.5.0",
-    "react-native-web": "~0.19.13"
+    "react-native-unistyles": "^2.20.0",
+    "react-native-web": "~0.19.13",
+    "react-redux": "^9.2.0",
+    "react-remember": "^1.3.11",
+    "redux-devtools-expo-dev-plugin": "^1.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "~7.26.0",
