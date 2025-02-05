@@ -19,3 +19,4 @@ module.exports = {
   },
   coverageDirectory: '../../coverage/apps/mobile',
 };
+  
