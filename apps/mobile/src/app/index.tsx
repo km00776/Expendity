@@ -1,17 +1,34 @@
-import { Link } from 'expo-router';
-import { Button, Text, View } from 'react-native';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
-
-
-export const Home = () => {
-    console.log('hi')
+import { StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
+export default function Root() {
   return (
-    <View style={{backgroundColor: 'red', flex: 1}}>
-     <Text>Hi</Text>
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <Text style={styles.title}>Hello World</Text>
+        <Text style={styles.subtitle}>This is the first page of your app.</Text>
+      </View>
     </View>
   );
-};
+}
 
-
-
-export default Home;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    padding: 24,
+  },
+  main: {
+    flex: 1,
+    justifyContent: "center",
+    maxWidth: 960,
+    marginHorizontal: "auto",
+  },
+  title: {
+    fontSize: 64,
+    fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: 36,
+    color: "#38434D",
+  },
+});
