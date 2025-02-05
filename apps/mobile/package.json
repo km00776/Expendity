@@ -22,6 +22,7 @@
     "@rtk-query/codegen-openapi": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
+    "react-native-safe-area-context": "*",
     "enhanced-resolve": "*",
     "expo": "*",
     "expo-router": "*",
