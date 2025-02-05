@@ -1,35 +1,5 @@
 # MobileApplication
 
-## Prerequisites
-
-- Homebrew
-- Node.js LTS (currently v22)
-- pnpm
-
-Everything as described in the [React Native Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) document:
-
-- Xcode
-- iOS simulators
-- Cocoapods (you might prefer to install this via Homebrew instead)
-- JDK
-- Android Studio
-- Android Development Tools
-- Android system images and emulators
-
-All macOS system dependencies installed via Homebrew can be installed using the included [Brewfile](./Brewfile):
-
-```bash
-brew bundle --file=<PATH_TO_THIS_REPO>/Brewfile
-```
-
-## Setup
-
-### Private Registry Access
-
-The app uses a private registry for some packages, you can see the registry in the `.npmrc` file.
-
-In order to authenticate and access the packages, you'll need to follow the steps outlined [here](https://learn.microsoft.com/en-us/azure/devops/artifacts/npm/npmrc?view=azure-devops&tabs=Linuxmac,classic). Use the following substitutions:
-
 
 
 ## Running mobile app
