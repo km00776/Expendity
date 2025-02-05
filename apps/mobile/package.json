@@ -42,7 +42,10 @@
     "react-remember": "*",
     "redux-devtools-expo-dev-plugin": "*",
     "tsconfig-paths": "*",
-    "tslib": "*"
+    "tslib": "*",
+    "react-hook-form": "*",
+    "valibot": "*",
+    "ts-pattern": "*"
   },
   "devDependencies": {
     "ts-node": "^10.9.2"
