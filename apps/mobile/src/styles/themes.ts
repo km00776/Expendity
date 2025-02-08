@@ -1,7 +1,8 @@
 export const lightTheme = {
     colors: {
       typography: '#000000',
-      background: '#ffffff'
+      background: '#ffffff',
+      inputBackground: '#000000'
     },
     margins: {
       sm: 2,
@@ -14,7 +15,8 @@ export const lightTheme = {
   export const darkTheme = {
     colors: {
       typography: '#ffffff',
-      background: '#000000'
+      background: '#000000',
+      inputBackground: '#ffffff'
     },
     margins: {
       sm: 2,
