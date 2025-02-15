@@ -8,40 +8,15 @@ import { PasscodeCreateFormValues, PasscodeCreateSchema } from '../../schemas/In
 import { valibotResolver } from '@hookform/resolvers/valibot';
 import { useRef } from 'react';
 
-type Inputs = {
-  example: string;
-
-};
 
 export default function Root() {
 
   const { styles } = useStyles(stylesheet);
-  const inputRef = useRef<PasscodeInputRefHandle>(null);
 
-  const { control, handleSubmit, formState, reset } =
-  useForm<PasscodeCreateFormValues>({
-    resolver: valibotResolver(PasscodeCreateSchema),
-    mode: 'onSubmit',
-    reValidateMode: 'onSubmit',
-    defaultValues: {
-      passcode: '',
-    },
-  });
 
   return (
     <View style={styles.root}>
       <Text style={styles.textStyle}>Welcome Back</Text>
-      <View style={{ justifyContent: 'center', width: '90%'}}>
-      <PasscodeInputField<PasscodeCreateFormValues>
-          name="passcode"
-          inputRef={inputRef}
-          control={control}
-          autoFocus={true}
-          testID="passcode-input"
-          disabled={formState.isSubmitting}
-          onSubmitEditing={() => console.log('submitted')}
-        />
-      </View>
     </View>
   );
 }
