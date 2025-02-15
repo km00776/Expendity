@@ -45,7 +45,7 @@ const EmptyCell = () => {
     </Text>
   );
 };
-export const PasscodeCell = ({
+export const  PasscodeCell = ({
   state,
   value,
   error,
@@ -72,7 +72,6 @@ export const PasscodeCell = ({
   return (
     <View style={styles.cellContainer}>
       <View
-        testID={`${testID}-${state}`}
         style={[styles.cell, styles.withCellStyle(error)]}
       >
         <View style={styles.cellElement}>{cellElement}</View>
@@ -87,9 +86,8 @@ const stylesheet = createStyleSheet((theme) => ({
   cellText: {
     width: '100%',
     flex: 1,
-   
+    color: 'red',
     fontSize: 28,
-    fontVariant: ['tabular-nums'],
     textAlign: 'center',
   },
   cellContainer: {

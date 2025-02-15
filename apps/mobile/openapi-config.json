@@ -1,0 +1,8 @@
+{
+  "schemaFile": "https://bankaccountdata.gocardless.com/api/v2/swagger.json",
+  "apiFile": "./src/store/emptyApi.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "./src/store/nordigenApi.ts",
+  "exportName": "nordigenApi",
+  "hooks": true
+}

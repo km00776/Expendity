@@ -45,7 +45,8 @@
     "tslib": "*",
     "react-hook-form": "*",
     "valibot": "*",
-    "ts-pattern": "*"
+    "ts-pattern": "*",
+    "@hookform/resolvers": "*"
   },
   "devDependencies": {
     "ts-node": "^10.9.2"

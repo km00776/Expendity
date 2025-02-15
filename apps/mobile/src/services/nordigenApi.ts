@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { emptySplitApi as api } from './emptyApi';
 
 const injectedRtkApi = api.injectEndpoints({

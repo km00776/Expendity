@@ -56,6 +56,8 @@ export const PasscodeInput = forwardRef<View, PasscodeInputProps>(
   ) => {
     const [hideAllValues, setHideAllValues] = useState<boolean>(false);
 
+    console.log('value', value);
+
     const passCodeRef = useRef(value);
     const hiddenInputRef = useRef<TextInput>(null);
 
