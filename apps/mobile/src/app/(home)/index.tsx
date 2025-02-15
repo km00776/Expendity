@@ -1,12 +1,7 @@
-import { Button, Text, TextInput, View } from 'react-native';
-import { Provider } from 'react-redux';
+import { Text, View } from 'react-native';
+
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
-import { useForm, Controller, useController, type UseControllerProps } from 'react-hook-form';
-import { PasscodeInput, PasscodeInputRefHandle } from '../../components/PasscodeInput/PasscodeInput';
-import { PasscodeInputField } from '../../components/PasscodeInputField/PasscodeInputField';
-import { PasscodeCreateFormValues, PasscodeCreateSchema } from '../../schemas/InputFieldSchema';
-import { valibotResolver } from '@hookform/resolvers/valibot';
-import { useRef } from 'react';
+
 
 
 export default function Root() {
