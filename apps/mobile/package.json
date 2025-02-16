@@ -46,7 +46,8 @@
     "react-hook-form": "*",
     "valibot": "*",
     "ts-pattern": "*",
-    "@hookform/resolvers": "*"
+    "@hookform/resolvers": "*",
+    "expo-font": "*"
   },
   "devDependencies": {
     "ts-node": "^10.9.2"

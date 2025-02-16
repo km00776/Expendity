@@ -34,7 +34,16 @@
       "bundler": "metro"
     },
     "plugins": [
-       "expo-router"
+       "expo-router",
+       [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Poppins-Regular.ttf",
+            "./assets/fonts/Plain-Light.ttf"
+          ]
+        }
+       ]
     ]
   }
 }
