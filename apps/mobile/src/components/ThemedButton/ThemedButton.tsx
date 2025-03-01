@@ -59,9 +59,8 @@ const stylesheet = createStyleSheet((theme) => ({
     textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Poppins-SemiBold',
-    letterSpacing: 5,
     lineHeight: 30,
-    textTransform: 'capitalize',
+    textTransform: 'uppercase',
     variants: {
       color: {
         pressed: {},

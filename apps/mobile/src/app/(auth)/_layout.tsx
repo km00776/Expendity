@@ -6,7 +6,7 @@ import { Stack } from 'expo-router/stack';
 export default function AuthRootLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="signin" />
+      <Stack.Screen name="index" />
     </Stack>
   );
 }

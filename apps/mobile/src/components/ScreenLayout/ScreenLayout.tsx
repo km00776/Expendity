@@ -1,20 +1,22 @@
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import { ComponentProps } from 'react';
+import { UnistylesRuntime } from 'react-native-unistyles'
 
 export type ScreenLayoutProps = ComponentProps<typeof SafeAreaView>;
 
 const ScreenLayout = ({ children, ...props }: ScreenLayoutProps) => {
   const { styles } = useStyles(stylesheet);
+  
 
   return (
-    <SafeAreaView style={styles.root} {...props}>
+    <ScrollView bounces={false} contentContainerStyle={styles.root} {...props}>
       <View style={styles.circle} />
       <View style={styles.circle2} />
       <View style={styles.square} />
       <View style={styles.square2} />
       {children}
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -22,41 +24,10 @@ export default ScreenLayout;
 
 const stylesheet = createStyleSheet((theme) => ({
   root: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: 'white',
-  },
-  imageContainer: {
-    height: 422,
-    width: 385,
-    alignSelf: 'center',
-  },
-  iconContainer: {
-    height: 47,
-    width: '90%',
-    alignSelf: 'center',
-  },
-  btnContainer: {
-    alignSelf: 'center',
-    marginTop: 46,
-  },
-  description: {
-    textAlign: 'center',
-    color: '#000000',
-    fontSize: 14,
-    fontFamily: 'Poppins-Regular',
-    lineHeight: 21,
-    marginTop: 23,
-  },
-  heading: {
-    textAlign: 'center',
-    color: '#BB1F22',
-    fontSize: 35,
-    fontFamily: 'Poppins-SemiBold',
-    lineHeight: 53,
-  },
-  headingContainer: {
-    alignSelf: 'center',
-    width: '80%',
+    paddingBottom: UnistylesRuntime.insets.bottom ,
+    paddingTop: UnistylesRuntime.insets.top
   },
   circle: {
     width: 635,
@@ -78,11 +49,6 @@ const stylesheet = createStyleSheet((theme) => ({
     borderColor: '#FFF8F8', // Matches X position
     top: -167,
     zIndex: -1,
-  },
-  imageStyle: {
-    width: '100%',
-    height: '100%',
-    alignSelf: 'center',
   },
   square: {
     width: 372,
