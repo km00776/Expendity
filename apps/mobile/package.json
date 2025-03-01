@@ -47,7 +47,11 @@
     "valibot": "*",
     "ts-pattern": "*",
     "@hookform/resolvers": "*",
-    "expo-font": "*"
+    "expo-font": "*",
+    "expo-status-bar": "*",
+    "expo-splash-screen": "*",
+    "react-native-screens": "*",
+    "": "*"
   },
   "devDependencies": {
     "ts-node": "^10.9.2"
