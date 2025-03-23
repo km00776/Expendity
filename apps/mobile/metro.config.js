@@ -17,8 +17,10 @@ const customConfig = {
     babelTransformerPath: require.resolve('react-native-svg-transformer'),
   },
   resolver: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
     assetExts: assetExts.filter((ext) => ext !== 'svg'),
-    sourceExts: [...sourceExts, 'cjs', 'mjs', 'svg'],
+     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    sourceExts: [...sourceExts, 'cjs', 'mjs', 'svg', 'ts', 'tsx'],
   },
 };
 

@@ -1,16 +1,45 @@
-import { Image, Text, View } from 'react-native';
+import { Alert, Image, Text, View } from 'react-native';
 import WELCOME_IMAGE from '../../../assets/welcome_image.png';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 // import SANTANDER_LOGO from '../../../assets/santander_logo.png';
 import { ThemedButton } from '../../components/ThemedButton/ThemedButton';
 import ScreenLayout from '../../components/ScreenLayout/ScreenLayout';
+import { usePostApiV2TokenNewMutation } from '../../services/nordigenApi';
+
+const { 
+  EXPO_PUBLIC_NORDIGEN_SECRET_KEY: secretKey, 
+  EXPO_PUBLIC_NORDIGEN_SECRET_ID: secretID 
+} = process.env;  
 
 export default function SignInPage() {
   const { styles } = useStyles(stylesheet);
 
+  const [postApiV2TokenNew, { data, error, isLoading }] =
+    usePostApiV2TokenNewMutation();
+
+console.log('secretKey:', secretKey);
+console.log('secretId:', secretID);
+
+  const handleConnectBank = async () => {
+    try {
+      const response = await postApiV2TokenNew({
+        jwtObtainPairRequest: { secret_id: secretID, secret_key: secretKey },
+      });
+      // store key in secret storage
+      console.log('response', response)
+
+      if (response.error) {
+        throw new Error('Something went wrong');
+      }
+    } catch (err) {
+      Alert.alert(`Something went wrong - ${err}`)
+      return;
+    }
+  };
+
   return (
     <ScreenLayout>
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1 }}>
         <View style={styles.imageContainer}>
           <Image
             resizeMode="contain"
@@ -18,20 +47,18 @@ export default function SignInPage() {
             source={WELCOME_IMAGE}
           />
         </View>
-      
+
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>Expendity</Text>
           <Text style={styles.description}>
             Connect with your bank to track your expenses and get daily and
             weekly insights
           </Text>
-     
         </View>
-  
       </View>
       <View style={styles.btnContainer}>
-          <ThemedButton label={'connect bank'} />
-        </View>
+        <ThemedButton onPress={handleConnectBank}label={'connect bank'} />
+      </View>
     </ScreenLayout>
   );
 }
@@ -50,8 +77,7 @@ const stylesheet = createStyleSheet((theme) => ({
   btnContainer: {
     alignSelf: 'center',
     width: '80%',
-    paddingVertical: 15
-
+    paddingVertical: 15,
   },
   description: {
     textAlign: 'center',
