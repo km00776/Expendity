@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+import { createSlice, Slice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface AuthenticationTokenInfo {
   accessExpiresIn?: number;
@@ -17,7 +18,7 @@ const initialState: AuthenticationState = {
   tokenInfo: null,
 };
 
-export const AuthenticationSlice: Slice<AuthenticationState> = createSlice({
+export const AuthenticationSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
