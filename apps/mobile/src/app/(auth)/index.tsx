@@ -6,10 +6,10 @@ import { ThemedButton } from '../../components/ThemedButton/ThemedButton';
 import ScreenLayout from '../../components/ScreenLayout/ScreenLayout';
 import { usePostApiV2TokenNewMutation } from '../../services/nordigenApi';
 
-const { 
-  EXPO_PUBLIC_NORDIGEN_SECRET_KEY: secretKey, 
-  EXPO_PUBLIC_NORDIGEN_SECRET_ID: secretID 
-} = process.env;  
+const {
+  EXPO_PUBLIC_NORDIGEN_SECRET_KEY: secretKey,
+  EXPO_PUBLIC_NORDIGEN_SECRET_ID: secretID,
+} = process.env;
 
 export default function SignInPage() {
   const { styles } = useStyles(stylesheet);
@@ -17,29 +17,26 @@ export default function SignInPage() {
   const [postApiV2TokenNew, { data, error, isLoading }] =
     usePostApiV2TokenNewMutation();
 
-console.log('secretKey:', secretKey);
-console.log('secretId:', secretID);
-
   const handleConnectBank = async () => {
     try {
       const response = await postApiV2TokenNew({
         jwtObtainPairRequest: { secret_id: secretID, secret_key: secretKey },
       });
       // store key in secret storage
-      console.log('response', response)
+      console.log('response', response);
 
       if (response.error) {
         throw new Error('Something went wrong');
       }
     } catch (err) {
-      Alert.alert(`Something went wrong - ${err}`)
+      Alert.alert(`Something went wrong - ${err}`);
       return;
     }
   };
 
   return (
     <ScreenLayout>
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
             resizeMode="contain"
@@ -57,13 +54,16 @@ console.log('secretId:', secretID);
         </View>
       </View>
       <View style={styles.btnContainer}>
-        <ThemedButton onPress={handleConnectBank}label={'connect bank'} />
+        <ThemedButton onPress={handleConnectBank} label={'connect bank'} />
       </View>
     </ScreenLayout>
   );
 }
 
 const stylesheet = createStyleSheet((theme) => ({
+  container: {
+    flex: 1,
+  },
   imageContainer: {
     height: 400,
     width: 385,
